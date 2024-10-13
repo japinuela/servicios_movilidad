@@ -15,7 +15,7 @@ return function (App $app) {
 	$container = $app->getContainer();
 	
     $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world 2.0!');
+        $response->getBody()->write('Hello world GIT');
         return $response;
     });
 	
