@@ -9,12 +9,10 @@ class UserService {
     public function __construct(Database $db) {
         $this->db = $db->connect();
 		error_log('Constructor UserService');
-		
     }
 
     public function authenticate($loginName, $password) {
-		error_log('Entro en authenticate UserService');
-        // Preparar la consulta para obtener el usuario por loginName
+		// Preparar la consulta para obtener el usuario por loginName
         $stmt = $this->db->prepare('
             SELECT ul.UserId, ul.PasswordHash, ul.PasswordSalt, ha.AlgorithmName
             FROM user_login_data ul
