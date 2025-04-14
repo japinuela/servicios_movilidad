@@ -1,18 +1,20 @@
 version: '3.7'
 
-volumes:
-    logs:
-        driver: local
-
 services:
-    slim:
-        image: php:8.1-cli
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
-        ports:
-            - "8888:8080"
-        volumes:
-            - .:/var/www
-            - logs:/var/www/logs
+  slim:
+    build: .
+    working_dir: /var/www
+    ports:
+      - "8888:8080"
+    volumes:
+      - .:/var/www
+    environment:
+      DB_HOST: 172.17.0.3      # IP del contenedor MySQL ya en ejecución
+      DB_PORT: 3306
+      DB_NAME: ciberseguridad-pIII
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_CHARSET: utf8mb4
+      JWT_SECRET: juanpi
+    networks:
+      - default
